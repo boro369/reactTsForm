@@ -47,7 +47,7 @@ export default class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
         const { checked } = this.state;
 
         return (
-            <div onClick={() => !disabled && this.handleChange()} className={`${wrapperClass} ${disabled} ? 'disabled-wrapper' : 'checkbox-wrapper'`}>
+            <div onClick={() => !disabled && this.handleChange()} className={wrapperClass}>
                 <input
                     type={'checkbox'}
                     className={className}

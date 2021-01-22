@@ -30,10 +30,9 @@ const RadioButton: FC<RadioButtonProps> = (props) => {
 
     return (
         <div className={wrapperClass}>
-            <div className={`${className} ${disabled ? 'radio disabled' : 'radio'}`} onClick={click} >
-                <input type='radio' value={value} name={name} checked={state} readOnly />
+            <div className={className} onClick={click} >
+                <input type='radio' className='input-box-radio' value={value} name={name} checked={state} readOnly />
                 {label && <label>{label}</label>}
-                <span className='checkmark'></span>
                 {hasError && <div className='error-message'>{hasError}</div>}
             </div>
         </div>

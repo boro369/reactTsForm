@@ -45,6 +45,7 @@ export const SignUp: FC = () => {
             <Form>
                 <FormItem>
                     <InputBox 
+                        type='text'
                         className='input-box-name'
                         placeholder='Enter your name'
                         name='name'
@@ -56,6 +57,7 @@ export const SignUp: FC = () => {
                 </FormItem>
                 <FormItem>
                     <InputBox
+                        type='email'
                         className='input-box-email'
                         placeholder='Email'
                         name='email'
@@ -67,6 +69,7 @@ export const SignUp: FC = () => {
                 </FormItem>
                 <FormItem>
                     <InputBox
+                        type='password'
                         className='input-box-pswd'
                         placeholder='Password'
                         name='password'
@@ -86,26 +89,28 @@ export const SignUp: FC = () => {
                     />
                 </FormItem>
                 <FormItem>
+                    <div className='form-item-radio-flex'>
                         <RadioButton 
-                        wrapperClass='form-item-radio'
-                        disabled={ false }
-                        checked={ false }
-                        onclick={ (): void => void 0 }
-                        label='male'
-                        value='male'
-                        name='gender'
-                    />
-                </FormItem>
-                <FormItem>
-                    <RadioButton 
-                        wrapperClass='form-item-radio'
-                        disabled={ false }
-                        checked={ false }
-                        onclick={ (): void => void 0 }
-                        label='female'
-                        value='female'
-                        name='gender'
-                    />
+                            wrapperClass='form-item-radio'
+                            className='form-item-radio-male'
+                            disabled={ false }
+                            checked={ false }
+                            onclick={ (): void => void 0 }
+                            label='Male'
+                            value='male'
+                            name='gender'
+                        />
+                        <RadioButton 
+                            wrapperClass='form-item-radio'
+                            className='form-item-radio-female'
+                            disabled={ false }
+                            checked={ false }
+                            onclick={ (): void => void 0 }
+                            label='Female'
+                            value='female'
+                            name='gender'
+                        />
+                    </div>
                 </FormItem>
                 <FormItem>
                     <CheckBox
