@@ -5,7 +5,7 @@ import CheckBox from '../components/checkBox/CheckBox';
 import RadioButton from '../components/radioButton/RadioButton';
 import Select from '../components/selectOption/SelectOption';
 import Button from '../components/button/Button';
-
+import { emilValidation } from '../utility/UtilityFunctions';
 import './SignUp.css';
 
 export const SignUp: FC = () => {
@@ -27,6 +27,8 @@ export const SignUp: FC = () => {
                         className="input-box-email"
                         placeholder="Email"
                         name="email"
+                        changeValidation={false}
+                        customFunction={(event) => emilValidation(event, 'InvalidEmail')}
                         customErrorText="Custom Error Text"
                         isRequired={true}
                     />
@@ -47,7 +49,7 @@ export const SignUp: FC = () => {
                     />
                 </FormItem>
                 <FormItem>
-                    <RadioButton 
+                    <RadioButton
                         wrapperClass="form-item-radio"
                         checked
                         onclick={ (): void => void 0 }

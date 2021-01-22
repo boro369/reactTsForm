@@ -1,5 +1,4 @@
 import React, { Component, MouseEvent, ChangeEvent, FormEvent } from 'react';
-
 import './inputBox.css';
 
 interface InputLabel {
@@ -11,8 +10,10 @@ interface InputLabel {
 
 interface InputProps {
     validationCallback: (error: boolean) => void;
+    changeValidation: boolean;
     customErrorText: string;
     customFunction?: (value: string) => string;
+    blurValidation: boolean;
     wrapperClass: string; // ?
     className: string;
     placeholder: string;
@@ -31,6 +32,8 @@ interface InputState {
 export default class InputBox extends Component<InputProps, InputState> {
     static defaultProps = {
         validationCallback: (): void => void 0,
+        changeValidation: true,
+        blurValidation: true,
         wrapperClass: '', // ?
         className: '',
         placeholder: '',
@@ -51,16 +54,21 @@ export default class InputBox extends Component<InputProps, InputState> {
     }
 
     onChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        const { onchange } = this.props;
+        const { onchange, changeValidation } = this.props;
         const { value } = event.currentTarget;
-        this.check(value);
+        if (changeValidation) {
+            this.check(value);
+        }
+
         onchange(event);
     }
 
     onBlur = (event: FormEvent<HTMLInputElement>): void => {
-        const { onblur } = this.props;
+        const { onblur, blurValidation } = this.props;
         const { value } = event.currentTarget;
-        this.check(value);
+        if (blurValidation) {
+            this.check(value);
+        }
         onblur(event);
     }
 
