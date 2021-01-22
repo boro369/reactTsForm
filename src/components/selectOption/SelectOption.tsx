@@ -8,9 +8,10 @@ interface Option {
 interface SelectOptionProps {
     options: Array<Option>;
     onSelect: (option?: Option) => void;
+    hasError?: string;
 }
 
-const SelectOption: React.FC<SelectOptionProps> = ({options, onSelect}) => {
+const SelectOption: React.FC<SelectOptionProps> = ({hasError, options, onSelect}) => {
 
     const handleSelect = (event: FormEvent<HTMLSelectElement>) => {
         const selected = options.find((option: Option) => option.id); //=== event.target.id);
@@ -18,11 +19,14 @@ const SelectOption: React.FC<SelectOptionProps> = ({options, onSelect}) => {
     };
 
     return (
-        <select onChange={handleSelect}>
-            {options.map((option: Option) => (
-                <option key={option.id} value={option.value}>{option.value}</option>
-            ))}
-        </select>
+        <>
+            <select onChange={handleSelect}>
+                {options.map((option: Option) => (
+                    <option key={option.id} value={option.value}>{option.value}</option>
+                ))}
+            </select>
+            {hasError && <div className='error-message'>{hasError}</div>}
+        </>
     );
 }
 

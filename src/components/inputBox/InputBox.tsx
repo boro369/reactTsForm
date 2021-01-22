@@ -18,9 +18,10 @@ interface InputProps {
     className: string;
     placeholder: string;
     isRequired: boolean;
-    onchange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onchange: (event: string) => void;
     onblur: (event: FormEvent<HTMLInputElement>) => void;
     name: string;
+    type: string; 
 }
 
 interface InputState {
@@ -42,6 +43,7 @@ export default class InputBox extends Component<InputProps, InputState> {
         onblur: (): void => void 0,
         value: '',
         name: '',
+        type: 'text',
     }
 
     constructor(props: InputProps) {
@@ -60,7 +62,7 @@ export default class InputBox extends Component<InputProps, InputState> {
             this.check(value);
         }
 
-        onchange(event);
+        onchange(event.currentTarget.value);
     }
 
     onBlur = (event: FormEvent<HTMLInputElement>): void => {
@@ -105,7 +107,7 @@ export default class InputBox extends Component<InputProps, InputState> {
     }
 
     render() {
-        const { wrapperClass, placeholder, name } = this.props;
+        const { wrapperClass, placeholder, name, type } = this.props;
         const { nestedError, errorMsg, error } = this.state;
 
         return (
@@ -116,6 +118,7 @@ export default class InputBox extends Component<InputProps, InputState> {
                     onChange={this.onChange}
                     onBlur={this.onBlur}
                     name={name}
+                    type={type}
                 />
                 {nestedError && <span className='input-box-error-text'>{this.state.nestedError}</span>}
                 {error && !nestedError && <span className='input-box-error-text'>{errorMsg}</span>}

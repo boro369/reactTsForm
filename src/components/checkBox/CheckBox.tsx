@@ -10,6 +10,7 @@ interface CheckBoxProps {
     name?: string;
     wrapperClass: string;
     disabled?: boolean;
+    hasError?: string;
     onchange: (checked: boolean) => void;
 }
 
@@ -41,7 +42,7 @@ export default class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
     }
 
     render() {
-        const { name, label, value, disabled, wrapperClass } = this.props;
+        const { name, label, hasError, value, disabled, wrapperClass } = this.props;
         const { checked } = this.state;
 
         return (
@@ -55,7 +56,8 @@ export default class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
                     readOnly
                 />
                 <span className='checkmark'></span>
-                {label && <label><span className='checkbox-label'>{label}</span></label>}
+                {label && <label className='checkbox-label'>{label}</label>}
+                {hasError && <div className='error-message'>{hasError}</div>}
             </div>
         );
     }
