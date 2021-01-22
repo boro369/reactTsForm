@@ -9,6 +9,7 @@ interface CheckBoxProps {
     value: string;
     name?: string;
     wrapperClass: string;
+    className?: string;
     disabled?: boolean;
     hasError?: string;
     onchange: (checked: boolean) => void;
@@ -42,13 +43,14 @@ export default class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
     }
 
     render() {
-        const { name, label, hasError, value, disabled, wrapperClass } = this.props;
+        const { name, label, hasError, value, disabled, wrapperClass, className } = this.props;
         const { checked } = this.state;
 
         return (
-            <div onClick={() => !disabled && this.handleChange()} className={`${wrapperClass} disabled ? 'disabled-wrapper' : 'checkbox-wrapper'`}>
+            <div onClick={() => !disabled && this.handleChange()} className={`${wrapperClass} ${disabled} ? 'disabled-wrapper' : 'checkbox-wrapper'`}>
                 <input
                     type={'checkbox'}
+                    className={className}
                     value={value}
                     name={name}
                     disabled={disabled}

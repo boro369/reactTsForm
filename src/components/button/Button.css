@@ -1,8 +1,8 @@
 .form-item-button {
-    margin: 37px auto 53px;
+    margin: 37px 0 53px 29px;
 }
 
-.form-item-button>button {
+.primary-button {
     width: 340px;
     height: 62px;
     border-radius: 31px;
@@ -10,9 +10,6 @@
     color: #FFFFFF;
     font-size: 18px;
     border: none;
-}
-
-.btn-active {
     background-color: #0094FF;
     cursor: pointer;
 }

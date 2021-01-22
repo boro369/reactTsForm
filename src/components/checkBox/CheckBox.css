@@ -1,17 +1,17 @@
 .form-item-checkbox {
     width: 340px;
-    margin: auto;
+    margin: 30px auto 0;
 }
 
 .checkbox-custom {
     display: none;
 }
 
-.checkbox-custom-label {
+.checkbox-label {
     position: relative;
 }
 
-.checkbox-custom + .checkbox-custom-label:before {
+.checkbox-custom ~ .checkbox-label:before {
     content: '';
     background: #fff;
     border-radius: 3px;
@@ -23,8 +23,8 @@
     margin-right: 10px;
 }
 
-.checkbox-custom:checked + .checkbox-custom-label:after {
-    content: '';
+.checkbox-custom:checked ~ .checkbox-label:after {
+    content: "";
     padding: 2px;
     position: absolute;
     width: 1px;

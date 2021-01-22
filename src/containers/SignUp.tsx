@@ -53,7 +53,6 @@ export const SignUp: FC = () => {
                         onchange={handleNameChange}
                         validationCallback={setVAlidation}
                     />
-                    <div className='error-msg'></div>
                 </FormItem>
                 <FormItem>
                     <InputBox
@@ -65,7 +64,6 @@ export const SignUp: FC = () => {
                         onchange={handleEmailChange}
                         validationCallback={setVAlidation}
                     />
-                    <div className='error-msg'></div>
                 </FormItem>
                 <FormItem>
                     <InputBox
@@ -77,7 +75,6 @@ export const SignUp: FC = () => {
                         onchange={handlePasswordChange}
                         validationCallback={setVAlidation}
                     />
-                    <div className='error-msg'></div>
                 </FormItem>
                 <FormItem>
                     <Select 
@@ -87,7 +84,6 @@ export const SignUp: FC = () => {
                         }]}
                         onSelect={ (): void => void 0 }
                     />
-                    <div className='error-msg'></div>
                 </FormItem>
                 <FormItem>
                         <RadioButton 
@@ -97,7 +93,7 @@ export const SignUp: FC = () => {
                         onclick={ (): void => void 0 }
                         label='male'
                         value='male'
-                        name='male'
+                        name='gender'
                     />
                 </FormItem>
                 <FormItem>
@@ -108,12 +104,13 @@ export const SignUp: FC = () => {
                         onclick={ (): void => void 0 }
                         label='female'
                         value='female'
-                        name='female'
+                        name='gender'
                     />
                 </FormItem>
                 <FormItem>
                     <CheckBox
                         wrapperClass='form-item-checkbox'
+                        className='checkbox-custom'
                         value='value'
                         label='Accept terms and conditions'
                         checked={ false }
@@ -122,10 +119,11 @@ export const SignUp: FC = () => {
                 </FormItem>
                 <FormItem>
                     <Button
-                         disabled={false}
-                         onclick={(): void => void 0 }
-                         title='title'
-                         text='Sign Up'
+                        disabled={false}
+                        onclick={(): void => void 0 }
+                        title='title'
+                        text='Sign Up'
+                        wrapperClass='form-item-button'
                     />
                 </FormItem>
 
