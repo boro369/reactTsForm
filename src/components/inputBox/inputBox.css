@@ -20,13 +20,13 @@ input::placeholder {
 }
 
 .input-box-email {
-    background: url(../images/email.svg) no-repeat scroll 18px 18px;
+    background: url(../../images/email.svg) no-repeat scroll 18px 18px;
     padding-left: 50px !important;
     width: 290px !important;
 }
 
 .input-box-pswd {
-    background: url(../images/pswd.svg) no-repeat scroll 18px 14px;
+    background: url(../../images/pswd.svg) no-repeat scroll 18px 14px;
     padding-left: 50px !important;
     width: 290px !important;
 }

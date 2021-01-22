@@ -6,7 +6,7 @@ interface RadioButtonProps {
     wrapperClass: string;
     disabled: boolean;
     checked: boolean;
-    onclick?: () => void;
+    onclick: () => void;
     label: string;
     value: string | number;
     name: string;
@@ -18,7 +18,7 @@ const RadioButton: FC<RadioButtonProps> = (props) => {
 
     const click = (): void => {
         if (!disabled) {
-            // onclick();
+            onclick();
         }
     };
 

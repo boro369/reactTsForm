@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Form } from '../components/Form';
+import { Form } from '../components/form/Form';
 
 import './SignUp.css';
 

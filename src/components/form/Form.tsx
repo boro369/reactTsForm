@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import InputBox from './InputBox';
-import CheckBox from './CheckBox';
-import RadioButton from './RadioButton';
+import InputBox from '../inputBox/InputBox';
+import CheckBox from '../checkBox/CheckBox';
+import RadioButton from '../radioButton/RadioButton';
+import Select from '../selectOption/SelectOption';
 
 import './Form.css'
 
@@ -48,12 +49,18 @@ export const FormItem: FC = () => {
                     isRequired={true}
                 />
             </div>
+            <div>
+                <Select 
+                    options={[]}
+                    onSelect={ (): void => void 0 }
+                />
+            </div>
 
             <RadioButton 
                 wrapperClass="form-item-radio"
                 disabled={ false }
                 checked={ false }
-                // onclick={ () => void }
+                onclick={ (): void => void 0 }
                 label="male"
                 value="male"
                 name="gender"
@@ -63,7 +70,7 @@ export const FormItem: FC = () => {
                 wrapperClass="form-item-radio"
                 disabled={ false }
                 checked={ false }
-                // onclick={ () => void }
+                onclick={ (): void => void 0 }
                 label="female"
                 value="female"
                 name="gender"
