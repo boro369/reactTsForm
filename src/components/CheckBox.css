@@ -1,0 +1,37 @@
+.form-item-checkbox {
+    width: 340px;
+    margin: auto;
+}
+
+.checkbox-custom {
+    display: none;
+}
+
+.checkbox-custom-label {
+    position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before {
+    content: '';
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #0094FF;
+    display: inline-block;
+    width: 14px; 
+    height: 14px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:after {
+    content: "";
+    padding: 2px;
+    position: absolute;
+    width: 1px;
+    height: 5px;
+    border: solid #0094FF;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+    top: 2px; 
+    left: 4px;
+}

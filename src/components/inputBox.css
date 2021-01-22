@@ -1,0 +1,32 @@
+.form-item-input {
+    width: 340px;
+    margin: auto;
+}
+
+input::placeholder {
+    color:#A2A2A2;
+}
+
+.item-box-name>input,
+.item-box-email>input,
+.item-box-pasword>input {
+    height: 50px;
+    background-color: #F5F8FA;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    width: 320px;
+}
+
+.input-box-email {
+    background: url(../images/email.svg) no-repeat scroll 18px 18px;
+    padding-left: 50px !important;
+    width: 290px !important;
+}
+
+.input-box-pswd {
+    background: url(../images/pswd.svg) no-repeat scroll 18px 14px;
+    padding-left: 50px !important;
+    width: 290px !important;
+}

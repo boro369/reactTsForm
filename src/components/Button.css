@@ -1,0 +1,23 @@
+.form-item-button {
+    margin: 37px auto 53px;
+}
+
+.form-item-button>button {
+    width: 340px;
+    height: 62px;
+    border-radius: 31px;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    border: none;
+}
+
+.btn-active {
+    background-color: #0094FF;
+    cursor: pointer;
+}
+
+.btn-disabled {
+    background-color: #A2A2A2;
+    cursor: default;
+}
