@@ -1,32 +1,36 @@
-import React, { FC } from 'react';
-
+import React, { FC, useState, useEffect } from 'react';
 import './RadioButton.css';
 
 interface RadioButtonProps {
     wrapperClass: string;
+    className: string;
     disabled: boolean;
     checked: boolean;
-    onclick: () => void;
+    onclick: (checked: boolean) => void;
     label: string;
-    value: string | number;
-    name: string;
-    id: string;
+    value: string;
 }
 
 const RadioButton: FC<RadioButtonProps> = (props) => {
-    const { id, name, label, value, onclick, checked, disabled, wrapperClass } = props;
+    const { label, value, onclick, checked, className, disabled, wrapperClass } = props;
+    const [state, setState] = useState(false);
+
+    useEffect(() => {
+        onclick(state);
+    }, [onclick, state]);
+    
 
     const click = (): void => {
         if (!disabled) {
-            onclick();
+            setState(!state);
         }
     };
 
     return (
         <div className={wrapperClass}>
-            <div data-test-id={id} className={disabled ? 'radio disabled' : 'radio'} onClick={click} >
-                <input type='radio' value={value} name={name} checked={checked} readOnly />
-                {label && <label><span>{label}</span></label>}
+            <div className={`${className} ${disabled ? 'radio disabled' : 'radio'}`} onClick={click} >
+                <input type='radio' value={value} checked={checked} readOnly />
+                {label && <label>{label}</label>}
                 <span className='checkmark'></span>
             </div>
         </div>
