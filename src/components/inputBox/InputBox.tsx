@@ -107,14 +107,14 @@ export default class InputBox extends Component<InputProps, InputState> {
     }
 
     render() {
-        const { wrapperClass, placeholder, name, type } = this.props;
+        const { wrapperClass, className, placeholder, name, type } = this.props;
         const { nestedError, errorMsg, error } = this.state;
 
         return (
             <div className={`input-box-container ${wrapperClass}`}>
                 <input
                     placeholder={placeholder}
-                    className={`input-box ${ error || nestedError ? 'input-box-error' : ''}`}
+                    className={`${className} input-box ${ error || nestedError ? 'input-box-error' : 'input-box-margin'}`}
                     onChange={this.onChange}
                     onBlur={this.onBlur}
                     name={name}

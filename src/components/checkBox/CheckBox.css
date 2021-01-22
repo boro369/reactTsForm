@@ -24,7 +24,7 @@
 }
 
 .checkbox-custom:checked + .checkbox-custom-label:after {
-    content: "";
+    content: '';
     padding: 2px;
     position: absolute;
     width: 1px;

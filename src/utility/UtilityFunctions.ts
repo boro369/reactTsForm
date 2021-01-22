@@ -5,5 +5,5 @@ export const emilValidation = (email: string, errorText: string): string => {
         return errorText;
     }
 
-    return "";
+    return '';
 };

@@ -1,5 +1,7 @@
 import React, { FormEvent } from 'react';
 
+import './SelectOption.css';
+
 interface Option {
     id: number;
     value: string;
@@ -20,7 +22,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({hasError, options, onSelect}
 
     return (
         <>
-            <select onChange={handleSelect}>
+            <select onChange={handleSelect} className='form-item-select'>
                 {options.map((option: Option) => (
                     <option key={option.id} value={option.value}>{option.value}</option>
                 ))}

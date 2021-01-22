@@ -3,7 +3,12 @@ import './Form.css';
 
 export const Form: FC = ({children}) => {
     return (
-        <div className="form">{children}</div>
+        <div className='form'>
+            <div className='form-title'>
+                <span>Create a new account</span>
+            </div>
+            {children}
+        </div>
     );
 };
 
