@@ -47,23 +47,22 @@ export const SignUp: FC = () => {
                     />
                 </FormItem>
                 <FormItem>
-                        <RadioButton 
+                    <RadioButton 
                         wrapperClass="form-item-radio"
-                        disabled={ false }
-                        checked={ false }
+                        checked
                         onclick={ (): void => void 0 }
                         label="male"
+                        name='male'
                         value="male"
                     />
                 </FormItem>
                 <FormItem>
                     <RadioButton 
                         wrapperClass="form-item-radio"
-                        disabled={ false }
-                        checked={ false }
                         onclick={ (): void => void 0 }
                         label="female"
                         value="female"
+                        name='male'
                     />
                 </FormItem>
                 <FormItem>

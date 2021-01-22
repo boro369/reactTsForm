@@ -6,14 +6,15 @@ interface RadioButtonProps {
     className?: string;
     disabled?: boolean;
     checked?: boolean;
-    onclick: (checked: boolean) => void;
+    onclick: (checked: boolean | undefined) => void;
     label?: string;
+    name: string;
     value?: string;
 }
 
 const RadioButton: FC<RadioButtonProps> = (props) => {
-    const { label, value, onclick, checked, className, disabled, wrapperClass } = props;
-    const [state, setState] = useState(false);
+    const { name, label, value, onclick, checked, className, disabled, wrapperClass } = props;
+    const [state, setState] = useState(checked);
 
     useEffect(() => {
         onclick(state);
@@ -29,7 +30,7 @@ const RadioButton: FC<RadioButtonProps> = (props) => {
     return (
         <div className={wrapperClass}>
             <div className={`${className} ${disabled ? 'radio disabled' : 'radio'}`} onClick={click} >
-                <input type='radio' value={value} checked={checked} readOnly />
+                <input type='radio' value={value} name={name} checked={state} readOnly />
                 {label && <label>{label}</label>}
                 <span className='checkmark'></span>
             </div>
