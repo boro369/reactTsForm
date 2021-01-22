@@ -2,13 +2,13 @@ import React, { FC, useState, useEffect } from 'react';
 import './RadioButton.css';
 
 interface RadioButtonProps {
-    wrapperClass: string;
-    className: string;
-    disabled: boolean;
-    checked: boolean;
+    wrapperClass?: string;
+    className?: string;
+    disabled?: boolean;
+    checked?: boolean;
     onclick: (checked: boolean) => void;
-    label: string;
-    value: string;
+    label?: string;
+    value?: string;
 }
 
 const RadioButton: FC<RadioButtonProps> = (props) => {

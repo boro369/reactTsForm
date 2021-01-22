@@ -63,8 +63,6 @@ export const FormItem: FC = () => {
                 onclick={ (): void => void 0 }
                 label="male"
                 value="male"
-                name="gender"
-                id="male"
             />
             <RadioButton 
                 wrapperClass="form-item-radio"
@@ -73,8 +71,6 @@ export const FormItem: FC = () => {
                 onclick={ (): void => void 0 }
                 label="female"
                 value="female"
-                name="gender"
-                id="female"
             />
 
             <CheckBox
