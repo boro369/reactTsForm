@@ -8,7 +8,7 @@ interface CheckBoxProps {
     label: string;
     value: string;
     name?: string;
-    wrapperClass: string;
+    wrapperClass?: string;
     className?: string;
     disabled?: boolean;
     hasError?: string;

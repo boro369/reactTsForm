@@ -156,6 +156,7 @@ export const SignUp: FC = () => {
                 <FormItem>
                     <Button
                         disabled={buttonDisabled}
+                        className='primary-button'
                         onclick={handleSignUp}
                         title='title'
                         text='Sign Up'

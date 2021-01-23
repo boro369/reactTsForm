@@ -5,6 +5,7 @@ import './Button.css';
 interface ButtonProps {
     wrapperClass?: string;
     disabled?: boolean;
+    className?: string;
     onclick: () => void;
     title?: string;
     icon?: string;
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     const {
         wrapperClass,
         disabled,
+        className,
         onclick,
         title,
         icon,
@@ -26,7 +28,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     return (
         <div className={wrapperClass}>
             <button
-                className='primary-button'
+                className={className}
                 disabled={disabled}
                 onClick={disabled ? disabledHandler : onclick}
                 title={title}

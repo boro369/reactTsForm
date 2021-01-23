@@ -14,6 +14,7 @@ interface InputProps {
     customErrorText: string;
     customFunction?: (value: string) => string;
     blurValidation: boolean;
+    autoComplete: string;
     className: string;
     placeholder: string;
     isRequired: boolean;
@@ -34,6 +35,7 @@ export default class InputBox extends Component<InputProps, InputState> {
         validationCallback: (): void => void 0,
         changeValidation: true,
         blurValidation: true,
+        autoComplete: 'off',
         className: '',
         placeholder: '',
         isRequired: false,
@@ -105,13 +107,14 @@ export default class InputBox extends Component<InputProps, InputState> {
     }
 
     render() {
-        const { className, placeholder, name, type } = this.props;
+        const { className, placeholder, name, type, autoComplete } = this.props;
         const { nestedError, errorMsg, error } = this.state;
 
         return (
             <div className='input-box-container'>
                 <input
                     placeholder={placeholder}
+                    autoComplete={'off'}
                     className={`${className} input-box ${ error || nestedError ? 'input-box-error' : 'input-box-margin'}`}
                     onChange={this.onChange}
                     onBlur={this.onBlur}
