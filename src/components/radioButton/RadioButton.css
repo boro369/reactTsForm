@@ -8,13 +8,13 @@
     margin-left: 20px;
 }
 
-.input-box-radio[type='radio']:checked,
+/* .input-box-radio[type='radio']:checked,
 .input-box-radio[type='radio']:not(:checked) {
     position: absolute;
     left: -9999px;
-}
+} */
 
-.input-box-radio[type='radio']:checked + label,
+/* .input-box-radio[type='radio']:checked + label,
 .input-box-radio[type='radio']:not(:checked) + label {
     position: relative;
     padding-left: 20px;
@@ -60,4 +60,4 @@
 .input-box-radio[type='radio']:checked + label:after {
     opacity: 1;
     transform: scale(1);
-}
+} */

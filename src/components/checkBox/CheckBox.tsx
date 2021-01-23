@@ -58,7 +58,7 @@ export default class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
                     readOnly
                 />
                 <span className='checkmark'></span>
-                {label && <label className='checkbox-label'>{label}</label>}
+                {label && <label  className='checkbox-label' dangerouslySetInnerHTML={{ __html: label }}/> }
                 {hasError && <div className='error-message'>{hasError}</div>}
             </div>
         );

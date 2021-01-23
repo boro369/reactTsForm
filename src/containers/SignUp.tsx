@@ -8,11 +8,18 @@ import Button from '../components/button/Button';
 
 import './SignUp.css';
 
+enum Gender {
+    male = 'name',
+    female = 'female'
+}
+
 type SigUpData = {
     name?: string,
     email?: string,
     password?: string,
     country?: number,
+    gender?: Gender,
+    acceptTermsAndConditions?: boolean 
 }
 
 export const SignUp: FC = () => {
@@ -21,7 +28,9 @@ export const SignUp: FC = () => {
         name: undefined,
         email: undefined,
         password: undefined,
-        country: undefined,       
+        country: undefined,     
+        gender: undefined,
+        acceptTermsAndConditions: undefined
     };
     
     const handleNameChange = (value: string) => {
@@ -40,6 +49,31 @@ export const SignUp: FC = () => {
         data.country = country?.id
     }
 
+    const handleCheckGender = (name: string) => {
+        data.gender = name as Gender | undefined;
+    }
+
+    const handAcceptTermsAndConditions = (checked: boolean) => {
+        data.acceptTermsAndConditions = !checked;
+    }
+
+    const handleSignUp = () => {
+        console.log('zzzzzzzzzz', data);
+    }
+
+    const handleValdation = () => {
+        const keysOfObject = Object.keys(data);
+        for(let i = 0; i < keysOfObject.length; i++ ) {
+            // if (!data[keysOfObject[i]]) {
+            //     setVAlidation(true);
+            // }
+        }
+
+        setVAlidation(false);
+    }
+
+    // mnac error cases, unit tests, code cleaning, server part 
+
     return (
         <div className={'container'}>
             <Form>
@@ -52,7 +86,7 @@ export const SignUp: FC = () => {
                         customErrorText='Custom Error Text'
                         isRequired={true}
                         onchange={handleNameChange}
-                        validationCallback={setVAlidation}
+                        validationCallback={handleValdation}
                     />
                 </FormItem>
                 <FormItem>
@@ -64,7 +98,7 @@ export const SignUp: FC = () => {
                         customErrorText='Custom Error Text'
                         isRequired={true}
                         onchange={handleEmailChange}
-                        validationCallback={setVAlidation}
+                        validationCallback={handleValdation}
                     />
                 </FormItem>
                 <FormItem>
@@ -76,7 +110,7 @@ export const SignUp: FC = () => {
                         customErrorText='Custom Error Text'
                         isRequired={true}
                         onchange={handlePasswordChange}
-                        validationCallback={setVAlidation}
+                        validationCallback={handleValdation}
                     />
                 </FormItem>
                 <FormItem>
@@ -85,7 +119,7 @@ export const SignUp: FC = () => {
                             id:1,
                             value: 'Armenia'
                         }]}
-                        onSelect={ (): void => void 0 }
+                        onSelect={handleSelectCountry}
                     />
                 </FormItem>
                 <FormItem>
@@ -93,22 +127,19 @@ export const SignUp: FC = () => {
                         <RadioButton 
                             wrapperClass='form-item-radio'
                             className='form-item-radio-male'
-                            disabled={ false }
-                            checked={ false }
-                            onclick={ (): void => void 0 }
-                            label='Male'
-                            value='male'
+                            onclick={handleCheckGender}
                             name='gender'
-                        />
-                        <RadioButton 
-                            wrapperClass='form-item-radio'
-                            className='form-item-radio-female'
-                            disabled={ false }
-                            checked={ false }
-                            onclick={ (): void => void 0 }
-                            label='Female'
-                            value='female'
-                            name='gender'
+                            data={[
+                                {
+                                    label: 'Male',
+                                    value: 'male'
+                                },
+                                {
+                                    label: 'Female',
+                                    value: 'female'
+                                },
+                            ]}
+                            
                         />
                     </div>
                 </FormItem>
@@ -117,15 +148,15 @@ export const SignUp: FC = () => {
                         wrapperClass='form-item-checkbox'
                         className='checkbox-custom'
                         value='value'
-                        label='Accept terms and conditions'
-                        checked={ false }
-                        onchange={ (): void => void 0 }
+                        label={'<div>Accept <a href=\'https://career.habr.com/vacancies/1000068498?fbclid=IwAR218J2fa5GUpB6PR4CsblhBsJQNAt8nhjqZF23jOewa8_r-tgJNNBtMF6w\'>terms</a>  and <a href=\'https://career.habr.com/vacancies/1000068498?fbclid=IwAR218J2fa5GUpB6PR4CsblhBsJQNAt8nhjqZF23jOewa8_r-tgJNNBtMF6w\'>conditions</a><div>'}
+                        checked={false}
+                        onchange={handAcceptTermsAndConditions}
                     />
                 </FormItem>
                 <FormItem>
                     <Button
-                        disabled={false}
-                        onclick={(): void => void 0 }
+                        disabled={buttonDisabled}
+                        onclick={handleSignUp}
                         title='title'
                         text='Sign Up'
                         wrapperClass='form-item-button'

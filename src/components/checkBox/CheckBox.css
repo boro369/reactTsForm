@@ -9,6 +9,11 @@
 
 .checkbox-label {
     position: relative;
+    display: flex;
+}
+
+.checkbox-label>div {
+    line-height: 1;
 }
 
 .checkbox-custom ~ .checkbox-label:before {
