@@ -14,7 +14,8 @@
     font-size: 14px;
 }
 
-.input-box-margin {
+.input-box-container {
+    position: relative;
     margin-bottom: 20px;
 }
 
@@ -31,11 +32,9 @@
 }
 
 .input-box-error-text {
-    display: block;
+    position: absolute;
     font-size: 10px;
-    height: 20px;
-    text-align: left;
     color: #E82828;
-    margin-left: 45px;
-    margin-top: 2px;
+    left: 45px;
+    bottom: -15px;
 }

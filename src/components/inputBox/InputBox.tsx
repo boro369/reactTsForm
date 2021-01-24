@@ -109,7 +109,7 @@ export default class InputBox extends Component<InputProps, InputState> {
                     name={name}
                     type={type}
                 />
-                {error && <span className='input-box-error-text'>{errorMsg}</span>}
+                {error && <div className='input-box-error-text'>{errorMsg}</div>}
             </div>
         );
     }

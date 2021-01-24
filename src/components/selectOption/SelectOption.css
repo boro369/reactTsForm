@@ -10,20 +10,20 @@
     border-radius: 8px;
     border: none;
     padding-left: 18px;
+    appearance: none;
+    background-image: url(../../images/arrowBottom.svg);
+    background-repeat: no-repeat;
+    background-position: 310px 20px;
 }
 
-/* .form-item-select>option {
-    background-color: #FFFFFF ;
-    color: #222222;
-    border-radius: 8px;
-    max-height: 200px;
+/* select.form-item-select:focus {
+    background-image: url(../../images/arrowTop.svg);
 } */
 
 .select-error-text {
-    display: block;
+    position: absolute;
     font-size: 10px;
-    height: 20px;
-    text-align: left;
     color: #E82828;
-    margin-left: 45px;
+    left: 45px;
+    top: 50px;
 }
