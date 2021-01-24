@@ -7,22 +7,10 @@ import Select from '../components/selectOption/SelectOption';
 import Button from '../components/button/Button';
 import { emailValidation, nameLatinValiadtion } from '../utility/UtilityFunctions';
 import { PASSWORD_MIN_LENGTH, COUNTRIES, GENDER } from '../constants/Constants';
+import UserType, { Gender } from './interfaces';
+import { saveUser } from '../utility/HTTPClient';
 
 import './SignUp.css';
-
-// enum Gender {
-//     male = 'name',
-//     female = 'female'
-// }
-
-// type SigUpData = {
-//     name?: string,
-//     email?: string,
-//     password?: string,
-//     country?: number,
-//     gender?: Gender,
-//     acceptTermsAndConditions?: boolean 
-// }
 
 interface SignUpState {
     nameError?: boolean,
@@ -35,8 +23,8 @@ interface SignUpState {
 }
 
 export class SignUp extends Component<{}, SignUpState> {
-    data: { name: string; email: string; password: string; country?: number; acceptTermsAndConditions: boolean; gender: string};
-    
+    data: UserType;
+
     constructor(props: any) {
         super(props);
         this.state = {
@@ -53,20 +41,10 @@ export class SignUp extends Component<{}, SignUpState> {
             name: '',
             email: '', 
             password: '',
-            country: 0,
+            country: '',
             acceptTermsAndConditions: false,
-            gender: ''
+            gender: undefined
         };
-    }
-
-    componentDidUpdate() {
-        // const {nameError, emailError, passwordError, buttonDisabled, termsConditionsError} = this.state;
-        
-        // if (!nameError && !emailError && !passwordError && !termsConditionsError && buttonDisabled ) {
-        //     this.setState({
-        //         buttonDisabled: false
-        //     });
-        // }
     }
 
     handleNameChange = (name: string) => {
@@ -82,14 +60,14 @@ export class SignUp extends Component<{}, SignUpState> {
     }
 
     handleSelectCountry = (country: {id: number, value: string} | undefined) => {
-        this.data.country = country?.id;
-        this.setState({
-            countryError: !!country?.id,
-        });
+        this.data.country = country?.value;
+        if (country?.value) {
+            this.setState({ countryError: false });
+        }
     }
 
     handleCheckGender = (name: string) => {
-        this.data.gender = name;
+        this.data.gender = name as unknown as typeof Gender;
         this.setState({
             getnderError: false,
         });
@@ -98,26 +76,21 @@ export class SignUp extends Component<{}, SignUpState> {
     handAcceptTermsAndConditions = (checked: boolean) => {
         this.data.acceptTermsAndConditions = !checked;
         this.setState((prevState) => {
-            console.log('zzzzz', prevState.termsConditionsError);
             return {
                 termsConditionsError: !prevState.termsConditionsError,
-                // buttonDisabled: !prevState.termsConditionsError
             }
         });
     }
 
     //////////////////////
-
     handleSignUp = () => {
-        this.handleFinishValidation();
+        if (this.handleFinishValidation()) {
+            saveUser(this.data);
+        }
     }
 
     handleFinishValidation = () => {
-        const { nameError, emailError, passwordError } = this.state;
-        
-        if (!this.data.name || !this.data.email || !this.data.password || !this.data.country || !this.data.gender || !this.data.acceptTermsAndConditions) {
-            // console.log('rrrrr', nameError, emailError, passwordError);
-            
+        if (!this.data.name || !this.data.email || !this.data.password || !this.data.country || !this.data.gender || !this.data.acceptTermsAndConditions) {            
             this.setState({
                 nameError: true,
                 emailError: true,
@@ -127,29 +100,21 @@ export class SignUp extends Component<{}, SignUpState> {
                 buttonDisabled: true,
                 termsConditionsError: true,
             });
+            return false
         }
+        return true;
     }
     
     handleValdation = (inputName?: string, error?: boolean) => {
         if (inputName === 'name') {
-            this.setState({
-                nameError: error,
-                // buttonDisabled: true,
-            });
+            this.setState({ nameError: error });
         }
         if (inputName === 'email') {
-            this.setState({
-                emailError: error,
-                // buttonDisabled: true,
-            });
+            this.setState({ emailError: error });
         }
         if (inputName === 'password') {
-            this.setState({
-                passwordError: error,
-                // buttonDisabled: true,
-            });
+            this.setState({ passwordError: error });
         }
-
     }
 
     nameValiadtion = (value: string) => {
@@ -177,7 +142,7 @@ export class SignUp extends Component<{}, SignUpState> {
 
     render() {
         const { nameError, emailError, passwordError, countryError, getnderError, buttonDisabled, termsConditionsError } = this.state;
-        console.log('===============', (!nameError && !emailError && !passwordError && !countryError && !getnderError), buttonDisabled);
+        
         return (
             <div className={'container'}>
                 <Form>
@@ -236,7 +201,7 @@ export class SignUp extends Component<{}, SignUpState> {
                                 onclick={this.handleCheckGender}
                                 name='gender'
                                 data={GENDER}
-                                hasError={getnderError}
+                                hasError={getnderError && !!!this.data.gender}
                                 errorMessage='You must select the gender'  
                             />
                         </div>
