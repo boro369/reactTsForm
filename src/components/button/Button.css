@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.btn-disabled {
+.primary-button:disabled {
     background-color: #A2A2A2;
     cursor: default;
 }

@@ -10,14 +10,15 @@ interface RadioButtonProps {
     wrapperClass?: string;
     className?: string;
     disabled?: boolean;
-    hasError?: string;
+    hasError?: boolean;
+    errorMessage?: string;
     onclick: (name: string) => void;
     name: string;
     data: Array<Data>;
 }
 
 const RadioButton: FC<RadioButtonProps> = (props) => {
-    const { data, name, onclick,  hasError, className, disabled, wrapperClass } = props;
+    const { data, name, onclick,  hasError, className, disabled, wrapperClass, errorMessage } = props;
 
     const click = (value: string): void => {
         if (!disabled) {
@@ -27,13 +28,11 @@ const RadioButton: FC<RadioButtonProps> = (props) => {
 
     const buildContent = () => {
         return data.map(
-            (radio) =>
-                <>
-                    <label onClick={() => click(radio.value)}>
-                        <input checked={radio.checked} type='radio' className='input-box-radio' value={radio.value} name={name} readOnly />
-                        {radio.label}
-                    </label>
-                </>
+            (radio, index) =>
+                <label key={index} onClick={() => click(radio.value)}>
+                    <input checked={radio.checked} type='radio' className='input-box-radio' value={radio.value} name={name} readOnly />
+                    {radio.label}
+                </label>
             );
     }
 
@@ -41,7 +40,7 @@ const RadioButton: FC<RadioButtonProps> = (props) => {
         <div className={wrapperClass}>
             <div className={className} >
                 {buildContent()}
-                {hasError && <div className='error-message'>{hasError}</div>}
+                {hasError && <div className='radio-error-text'>{errorMessage}</div>}
             </div>
         </div>
     );

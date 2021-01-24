@@ -18,3 +18,12 @@
     border-radius: 8px;
     max-height: 200px;
 } */
+
+.select-error-text {
+    display: block;
+    font-size: 10px;
+    height: 20px;
+    text-align: left;
+    color: #E82828;
+    margin-left: 45px;
+}

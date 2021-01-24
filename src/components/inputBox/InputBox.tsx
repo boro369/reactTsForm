@@ -1,33 +1,28 @@
-import React, { Component, MouseEvent, ChangeEvent, FormEvent } from 'react';
+import React, { Component, ChangeEvent, FormEvent } from 'react';
 import './inputBox.css';
 
-interface InputLabel {
-    onclick: (event: MouseEvent<HTMLElement>) => void;
-    class: string;
-    title: string;
-    value: string;
-}
-
 interface InputProps {
-    validationCallback: (error: boolean) => void;
+    validationCallback: (name: string, error: boolean) => void;
     changeValidation: boolean;
-    customErrorText: string;
-    customFunction?: (value: string) => string;
+    customErrorText?: string;
+    customFunction?: (value: string) => string | undefined;
     blurValidation: boolean;
     autoComplete: string;
     className: string;
     placeholder: string;
     isRequired: boolean;
     onchange: (event: string) => void;
+    nestedError?: string;
     onblur: (event: FormEvent<HTMLInputElement>) => void;
     name: string;
     type: string; 
+    error?: boolean
 }
 
 interface InputState {
-    nestedError: string;
-    errorMsg: string;
-    error: boolean;
+    nestedError?: string;
+    errorMsg?: string;
+    error?: boolean;
 }
 
 export default class InputBox extends Component<InputProps, InputState> {
@@ -44,56 +39,49 @@ export default class InputBox extends Component<InputProps, InputState> {
         value: '',
         name: '',
         type: 'text',
+        error: false
     }
+
+    value = '';
 
     constructor(props: InputProps) {
         super(props);
         this.state = {
             nestedError: '',
             errorMsg: props.customErrorText,
-            error: false,
+            error: props.error,
         };
     }
 
-    onChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        const { onchange, changeValidation } = this.props;
-        const { value } = event.currentTarget;
-        if (changeValidation) {
-            this.check(value);
+    componentDidUpdate() {
+        if (this.state.error !== this.props.error) {
+            console.log('ssssss', this.value);
+            this.check(this.value);
         }
+    }
 
-        onchange(event.currentTarget.value);
+    onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const { onchange } = this.props;
+        const { value } = event.currentTarget;
+        this.check(value);
+        this.value = value;
+        onchange(value);
     }
 
     onBlur = (event: FormEvent<HTMLInputElement>): void => {
-        const { onblur, blurValidation } = this.props;
+        const { onblur } = this.props;
         const { value } = event.currentTarget;
-        if (blurValidation) {
-            this.check(value);
-        }
+        this.check(value);
         onblur(event);
     }
 
-    setNestedError = (error: string): void => {
-        this.setState({ nestedError: error });
-        this.props.validationCallback(!!error);
-    }
-
     check = (value: string): void => {
-        const { name, isRequired, customFunction } = this.props;
-
-        if (isRequired) {
-            if (!value) {
-                this.setNestedError(`${name} is required`);
-                return;
-            }
-            this.setNestedError('');
-        }
+        const { customFunction } = this.props;
 
         if (customFunction) {
             const inputValue = value?.trim();
             const newErrorMessage = customFunction(inputValue);
-            if (typeof newErrorMessage === 'string') {
+            if (newErrorMessage && typeof newErrorMessage === 'string') {
                 this.handleCheckEnd(true, newErrorMessage);
                 return;
             }
@@ -102,27 +90,26 @@ export default class InputBox extends Component<InputProps, InputState> {
     }
 
     handleCheckEnd = (error: boolean, errorMsg: string): void => {
-        this.setState({ error, errorMsg });
-        this.props.validationCallback(error);
+        this.setState({ error, nestedError: undefined, errorMsg });
+        this.props.validationCallback(this.props.name, error);
     }
 
     render() {
-        const { className, placeholder, name, type, autoComplete } = this.props;
-        const { nestedError, errorMsg, error } = this.state;
+        const { className, placeholder, name, type } = this.props;
+        const { errorMsg, error } = this.state;
 
         return (
             <div className='input-box-container'>
                 <input
-                    placeholder={placeholder}
                     autoComplete={'off'}
-                    className={`${className} input-box ${ error || nestedError ? 'input-box-error' : 'input-box-margin'}`}
+                    placeholder={placeholder}
+                    className={`${className} input-box ${ error ? 'input-box-error' : 'input-box-margin'}`}
                     onChange={this.onChange}
                     onBlur={this.onBlur}
                     name={name}
                     type={type}
                 />
-                {nestedError && <span className='input-box-error-text'>{this.state.nestedError}</span>}
-                {error && !nestedError && <span className='input-box-error-text'>{errorMsg}</span>}
+                {error && <span className='input-box-error-text'>{errorMsg}</span>}
             </div>
         );
     }
