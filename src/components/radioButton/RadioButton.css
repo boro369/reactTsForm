@@ -36,10 +36,8 @@ label:nth-last-child(1)>.input-box-radio {
 }
 
 .radio-error-text {
-    display: block;
+    position: absolute;
     font-size: 10px;
-    height: 20px;
-    text-align: left;
     color: #E82828;
-    margin-left: 17px;
+    left: 45px;
 }

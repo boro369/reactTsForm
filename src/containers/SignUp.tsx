@@ -8,7 +8,7 @@ import Button from '../components/button/Button';
 import { emailValidation, nameLatinValiadtion } from '../utility/UtilityFunctions';
 import { PASSWORD_MIN_LENGTH, COUNTRIES, GENDER } from '../constants/Constants';
 import UserType, { Gender } from './interfaces';
-import { saveUser } from '../utility/HTTPClient';
+// import { saveUser } from '../utility/HTTPClient';
 
 import './SignUp.css';
 
